@@ -6,10 +6,10 @@ fun main(){
     val t = "ouiuycbmqh"
     println(isAnagram(s,t))
 
-    var s1 = "rat"
-    var s2 = "car"
+    val s1 = "rat"
+    val s2 = "car"
 
-    //println(isAnagram(s1,s2))
+    println(isAnagram(s1,s2))
 
 }
 
@@ -29,13 +29,14 @@ fun isAnagram(s: String, t: String): Boolean {
     var prod1 = 1L //product of codepoints for all characters in string s
     var prod2 = 1L //product of codepoints for all characters in string t
 
-    val a = s.codePoints()
+    val a = s.codePoints() //getting ascii values as an integer stream
     val b = t.codePoints()
-    a.forEach {
+    a.forEach { //getting each ascii value from the stream
         sum1+=it
-        prod1 = (prod1 * it) % modulo
+        prod1 = (prod1 * it) % modulo //to avoid overflow while multiplying
     }
 
+    //ditto for stream b
     b.forEach {
         sum2+=it
         prod2 = (prod2 * it) % modulo
