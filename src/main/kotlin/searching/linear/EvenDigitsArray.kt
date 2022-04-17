@@ -2,10 +2,39 @@ package searching.linear
 
 fun main(){
 
+var array = intArrayOf(12,345,3,5,6789)
+
+    println(findNumbers(array))
 
 }
 
+fun findNumbers(nums: IntArray): Int {
 
+    var count = 0
+    for(num in nums)
+        if(evenDigits(countDigits(num))) count++
+
+    return count
+}
+
+//if modulus returns zero then even number is true
+fun evenDigits(totDigits : Int):Boolean = (totDigits % 2 == 0)
+
+//count digits in the number
+fun countDigits(number:Int) : Int{
+
+    var totDigits = 0
+    var temp = number
+
+    if(number < 0)
+        temp *= -1
+
+    while (temp > 0){
+        totDigits++
+        temp /= 10 //remove final digit from the number
+    }
+    return  totDigits
+}
 
 /*
 
