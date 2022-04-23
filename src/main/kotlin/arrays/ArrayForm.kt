@@ -1,5 +1,6 @@
 package arrays
 
+import java.math.BigInteger
 import kotlin.math.pow
 
 fun main(){
@@ -7,35 +8,38 @@ fun main(){
     val arr1 = intArrayOf(1,2,0,0)
     val arr2 = intArrayOf(2,7,4)
     val arr3 = intArrayOf(2,1,5)
+    val arr4 = intArrayOf(1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3)
 
-    println(addToArrayForm(arr1,34).toTypedArray().contentDeepToString())
-    println(addToArrayForm(arr2,181).toTypedArray().contentDeepToString())
-    println(addToArrayForm(arr3,806).toTypedArray().contentDeepToString())
+   println(addToArrayForm(arr1,34).toTypedArray().contentDeepToString())
+   println(addToArrayForm(arr2,181).toTypedArray().contentDeepToString())
+   println(addToArrayForm(arr3,806).toTypedArray().contentDeepToString())
+   println(addToArrayForm(arr4,516).toTypedArray().contentDeepToString())
 }
 
 
 fun addToArrayForm(num: IntArray, k: Int): List<Int> {
 
-    var result = mutableListOf<Int>()
+    val result = mutableListOf<Int>()
 
+    val biggie : BigInteger
     val length = num.size
-    var counter = 0
-    var actualNum = 0L
-    for(i in length-1 downTo 0){
-        var partialNum = 10.0.pow(counter++) *num[i]
-        actualNum += partialNum.toLong()
+
+    var stringNum = ""
+    for(i in 0 until length){
+        stringNum += num[i]
     }
 
-    var resultNumber = actualNum + k
+    biggie = BigInteger(stringNum)
 
-    while (resultNumber > 0){
+    var resultBig = biggie.add(k.toBigInteger())
 
-        val rem = resultNumber % 10
-        result.add(rem.toInt())
-        resultNumber /= 10
+    val stringify = resultBig.toString()
+
+    for(i in stringify){
+        result.add(Character.getNumericValue(i))
     }
 
-    return result.reversed()
+    return result
 }
 
 /*
