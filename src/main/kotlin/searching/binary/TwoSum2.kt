@@ -10,9 +10,9 @@ fun main(){
     array2 = twoSum(array2,6)
     array3 = twoSum(array3,-1)
 
-    println(array1.toTypedArray().contentDeepToString())
-    println(array2.toTypedArray().contentDeepToString())
-    println(array3.toTypedArray().contentDeepToString())
+     println(array1.toTypedArray().contentDeepToString())
+     println(array2.toTypedArray().contentDeepToString())
+     println(array3.toTypedArray().contentDeepToString())
 
 }
 
@@ -20,16 +20,37 @@ fun main(){
 
 fun twoSum(numbers: IntArray, target: Int): IntArray {
 
+   var startIndex = 0
+   var endIndex = numbers.size - 1
+   var answer = IntArray(size = 2){-1}
 
-    return intArrayOf(1,2)
+    while(startIndex < endIndex){
+
+        val sum = numbers[startIndex] + numbers[endIndex]
+
+        if(target == sum){
+            answer = intArrayOf(startIndex + 1,endIndex + 1)
+            break
+        }
+        else if(target > sum){
+           startIndex++
+        }
+        else if(target < sum)
+        {
+            endIndex--
+        }
+    }
+
+    return answer
 }
-
-
 
 /*
 
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
- Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+ Given a 1-indexed array of integers numbers
+ that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number.
+ Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
 
 Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
 
