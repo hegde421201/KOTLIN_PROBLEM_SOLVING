@@ -29,12 +29,16 @@ fun flipAndInvertImage(image: Array<IntArray>): Array<IntArray> {
         output[row.index] = row.value.reversed().toIntArray()
     }
 
-    for(row in output.withIndex()){
-       var total = 0
-      for(elem in output[row.index]){
-        var invert = elem xor 1
-        output[row.index][total++] = invert
-      }
+    val totR = image.size
+    val totC = image[0].size
+
+    val totalRC = totC * totR
+    for(i in 0 until totalRC){
+
+        val row = i / totC
+        val col = i % totC
+
+        output[row][col] = output[row][col] xor 1
     }
 
 return output
